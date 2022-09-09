@@ -6,16 +6,33 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS sessions (
+CREATE TABLE IF NOT EXISTS films_cells (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    cells INTEGER[][]
+    rowa SMALLINT,
+    cell SMALLINT
 );
 
 CREATE TABLE IF NOT EXISTS tickets (
     id SERIAL PRIMARY KEY,
-    session_id INT NOT NULL REFERENCES sessions(id),
-    pos_row INT NOT NULL,
+    film_cell_id INT NOT NULL REFERENCES films_cells(id),
+    rowa INT NOT NULL,
     cell INT NOT NULL,
     user_id INT NOT NULL REFERENCES users(id)
-);
+    );
+
+ALTER TABLE tickets ADD CONSTRAINT film_cell_id_unique UNIQUE (film_cell_id);
+
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Cold Heart', 1, 1);
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Cold Heart', 1, 2);
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Cold Heart', 1, 3);
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Cold Heart', 2, 1);
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Cold Heart', 2, 2);
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Cold Heart', 2, 3);
+
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Scare face', 1, 1);
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Scare face', 1, 2);
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Scare face', 1, 3);
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Scare face', 2, 1);
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Scare face', 2, 2);
+INSERT INTO films_cells (name, rowa, cell) VALUES ('Scare face', 2, 3);
