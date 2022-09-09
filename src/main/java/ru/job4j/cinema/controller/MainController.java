@@ -31,23 +31,6 @@ public class MainController {
         return "main";
     }
 
-    /**@PostMapping("/createTicket")
-    public String createTicket(@RequestParam ("cell.name") String name,
-                               @RequestParam ("cell.row") int row,
-                               @RequestParam ("cell.cell") int cell,
-                               //@RequestParam ("cell.cell") int cellId,
-                               @RequestParam (name = "fail", required = false) Boolean fail,
-                               HttpSession session
-                               ) {
-        //System.out.println(cellId);
-        System.out.println(name);
-        System.out.println(row);
-        System.out.println(cell);
-        System.out.println(session.getAttribute("user"));
-        return "main";
-
-    }*/
-
     @PostMapping("/createTicket")
     public String createTicket(@ModelAttribute FilmCell takenCell,
                                @RequestParam (name = "fail", required = false) Boolean fail,
@@ -60,6 +43,4 @@ public class MainController {
         System.out.println(user.getId());
         return "redirect:/main";
     }
-
-
 }
